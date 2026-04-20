@@ -685,28 +685,22 @@
 </section>
 
 <!-- GOLD RATE BAND -->
-<div class="gold-rate-band">
-  <h3>Today's Gold Rate</h3>
-  <div class="gold-rates">
-    <div class="rate-item">
-      <div class="label">22K / 10g</div>
-      <div class="value" id="rate22k">₹1,41,400</div>
-      <div class="change">▲ ₹120</div>
+<div class="gold-rate-band" style="background: var(--charcoal); padding: 30px 5vw; display: flex; flex-direction: column; align-items: center; text-align: center;">
+    <h3 style="font-family: 'Cormorant Garamond', serif; color: var(--white); margin-bottom: 20px; font-weight: 300; font-size: 1.5rem;">Today's Live Gold Rates (INR)</h3>
+    
+    <div style="width: 100%; max-width: 600px; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; border: 1px solid var(--gold); overflow: hidden;">
+        <iframe src="https://meltvalue.com/widget.html?currency=INR" 
+                style="width:100%; height:110px; border:none; filter: invert(0.9) hue-rotate(180deg);" 
+                title="Live Gold Prices" 
+                loading="lazy">
+        </iframe>
     </div>
-    <div class="rate-item">
-      <div class="label">18K / 10g</div>
-      <div class="value" id="rate18k">₹1,15,275</div>
-      <div class="change">▲ ₹98</div>
-    </div>
-    <div class="rate-item">
-      <div class="label">Silver / 10g</div>
-      <div class="value">₹890</div>
-      <div class="change" style="color:#f87171">▼ ₹2,520</div>
-    </div>
-  </div>
-  <a href="#" class="btn-primary" style="font-size:.74rem">Book Appointment</a>
-</div>
 
+    <div style="margin-top: 20px;">
+        <a href="#" class="btn-primary" style="font-size:.74rem">Book Appointment</a>
+    </div>
+    <p style="font-size: 10px; color: var(--muted); margin-top: 10px;">*Rates reflect international spot prices per gram. Local store premiums apply.</p>
+</div>
 <!-- PRODUCTS / NEW ARRIVALS -->
 <section class="products" id="new-arrivals">
   <div class="section-head">
@@ -1004,16 +998,7 @@
   document.querySelectorAll('.cat-card').forEach(c => c.style.animationPlayState = 'paused');
   const catSection = document.querySelector('.categories');
   if (catSection) observer.observe(catSection);
-
-  // Gold rate live simulation
-  function updateRates() {
-    const base22 = 72450, base18 = 59250;
-    const swing = () => Math.floor((Math.random() - 0.5) * 80);
-    const r22 = base22 + swing(), r18 = base18 + swing();
-    document.getElementById('rate22k').textContent = '₹' + r22.toLocaleString('en-IN');
-    document.getElementById('rate18k').textContent = '₹' + r18.toLocaleString('en-IN');
-  }
-  setInterval(updateRates, 8000);
+  
 </script>
 </body>
 </html>
