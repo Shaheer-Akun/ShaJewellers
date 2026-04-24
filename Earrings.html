@@ -119,5 +119,32 @@ h1, h2, .nav-logo {
         </div>
     </div>
 </div>
+  <script>
+function updateProductPrices() {
+    // 1. Get the 24K rate from your HTML and remove symbols/commas
+    const rateText = document.getElementById('gold-rate-24k').innerText;
+    const goldRate24K = parseFloat(rateText.replace(/[^\d.]/g, ''));
+
+    // 2. Loop through every product card
+    document.querySelectorAll('.product-card').forEach(card => {
+        const weight = parseFloat(card.getAttribute('data-weight'));
+        const carat = parseFloat(card.getAttribute('data-carat'));
+        const priceDisplay = card.querySelector('.dynamic-price');
+
+        if (weight && carat && priceDisplay) {
+            // Formula: (Weight * (Carat/24) * 24K_Rate) + 15%
+            // Note: Caratage is a ratio (e.g., 22/24)
+            const basePrice = weight * (carat / 24) * (goldRate24K / 10); // rate is per 10g
+            const finalPrice = basePrice * 1.15; // Adding 15%
+
+            // Format to Indian Rupee
+            priceDisplay.innerText = '₹' + Math.round(finalPrice).toLocaleString('en-IN');
+        }
+    });
+}
+
+// Run the function when the page loads
+window.onload = updateProductPrices;
+</script>
 </body>
 </html>
